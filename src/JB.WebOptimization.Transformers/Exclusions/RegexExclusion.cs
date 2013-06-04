@@ -34,7 +34,8 @@ namespace JB.WebOptimization.Transformers.Exclusions
             {
                 return true;
             }
-            return _regex.Match(path) != Match.Empty;
+            var match = _regex.Match(path);
+            return match != Match.Empty;
         }
     }
 }

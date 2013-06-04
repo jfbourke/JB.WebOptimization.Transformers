@@ -32,7 +32,8 @@ namespace JB.WebOptimization.Transformers
             _fileProvider = fileProvider;
             _exclusions = new List<IExclude>
                 {
-                    new RegexExclusion(new Regex(@"^(ht|f)tp(s?)\:"))
+                    new RegexExclusion(new Regex(@"^(ht|f)tp(s?)\:", RegexOptions.IgnoreCase)),
+                    new RegexExclusion(new Regex(@"$(?<!\.(jpg|jpeg|gif|png))", RegexOptions.IgnoreCase))
                 };
         }
 
@@ -65,8 +66,7 @@ namespace JB.WebOptimization.Transformers
                 throw new ArgumentNullException("response");
             }
 
-            var urlMatcher = new Regex(@"url\((['""]?)(.+?)\1\)");
-
+            var urlMatcher = new Regex(@"url\((['""]?)(.+?)\1\)", RegexOptions.IgnoreCase);
 
             var content = new StringBuilder();
             foreach (var fileInfo in response.Files)
@@ -106,7 +106,6 @@ namespace JB.WebOptimization.Transformers
         private string GenerateDataUri(Match match, string path)
         {
             var uri = match.Groups[2].Value;
-            //var path = context.HttpContext.Server.MapPath(uri.Replace("../",""));
 
             if (!_fileProvider.Exists(path))
             {
