@@ -4,5 +4,5 @@ JB.WebOptimization.Transformers provides IBundleTransform implementations for th
 ## Documentation
 See the [documentation](https://github.com/jfbourke/JB.WebOptimization.Transformers/wiki)
 	
-## LICENSE
+## License
 [MIT License](https://github.com/jfbourke/JB.WebOptimization.Transformers/blob/master/LICENSE.md)
